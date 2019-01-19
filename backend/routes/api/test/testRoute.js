@@ -19,10 +19,17 @@ router.get("/game-creation", (req, res) => {
   new Game({ properties })
     .save()
     .then(game => {
-      players.forEach(player => {
+      players.forEach((player, i) => {
         game.players.push(player);
+        if (i === 3) {
+          game
+            .save()
+            .then(game => {
+              res.status(201).json(game);
+            })
+            .catch(err => console.log(err));
+        }
       });
-      res.status(201).json(game);
     })
     .catch(err => console.log(err));
 });
@@ -45,6 +52,18 @@ router.get("/player-creation", (req, res) => {
       })
       .catch(err => console.log(err));
   });
+});
+
+// @route   GET api/test/game/:id
+// @desc    Returns the specified Game document
+// @access  Public
+router.get("/game/:id", (req, res) => {
+  const { id } = req.params;
+
+  Game.findById(id)
+    .populate("players")
+    .then(game => res.json(game))
+    .catch(err => console.log(err));
 });
 
 module.exports = router;
