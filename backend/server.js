@@ -7,6 +7,9 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// Import routes
+const testRoute = require("./routes/api/test/testRoute");
+
 // Initialize server
 app.listen(process.env.PORT || 3000, () => {
   console.log(`=== Server running on port ${process.env.PORT || 3000} ===`);
@@ -26,3 +29,5 @@ mongoose
 app.get("/", (req, res) => {
   res.send("<h1>Running</h1>");
 });
+
+app.use("/api/test", testRoute);
