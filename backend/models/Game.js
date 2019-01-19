@@ -5,13 +5,14 @@ const ObjectId = Schema.Types.ObjectId;
 const GameSchema = new Schema({
   players: [
     {
-      player: {
-        type: ObjectId,
-        ref: "players"
-      }
+      type: ObjectId,
+      ref: "players"
     }
   ],
-  diceRoll: 0,
+  diceRoll: {
+    type: Number,
+    default: 0
+  },
   properties: [],
   houses: {
     type: Number,
