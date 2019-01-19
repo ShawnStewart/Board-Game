@@ -8,10 +8,6 @@ const GameSchema = new Schema({
       player: {
         type: ObjectId,
         ref: "players"
-      },
-      cash: {
-        type: Number,
-        default: 1500
       }
     }
   ],
