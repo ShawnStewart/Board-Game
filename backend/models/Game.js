@@ -15,7 +15,7 @@ const GameSchema = new Schema({
       }
     }
   ],
-  tiles: [],
+  diceRoll: 0,
   properties: [],
   houses: {
     type: Number,
